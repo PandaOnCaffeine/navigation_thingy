@@ -24,17 +24,51 @@ class BurgerMenuWidget extends StatelessWidget {
             ),
           ),
           ListTile(
-            title: const Text('Bloc'),
+            title: const Text('StatefulCounter'),
             onTap: () {
               // Go to Root
               context.go('/bloc');
+              Navigator.pop(context);
             },
           ),
           ListTile(
-            title: const Text('Provider'),
+            title: const Text('ProviderCounter'),
             onTap: () {
               // Go to Provider Route
               context.go('/provider');
+              Navigator.pop(context);
+            },
+          ),
+          ListTile(
+            title: const Text('BlocCounter'),
+            onTap: () {
+              // Go to Root
+              context.go('/bloc');
+              Navigator.pop(context);
+            },
+          ),
+          ListTile(
+            title: const Text('RandomCounter'),
+            onTap: () {
+              // Go to Provider Route
+              context.go('/random');
+              Navigator.pop(context);
+            },
+          ),
+          ListTile(
+            title: const Text('FutureCounter'),
+            onTap: () {
+              // Go to Root
+              context.go('/bloc');
+              Navigator.pop(context);
+            },
+          ),
+          ListTile(
+            title: const Text('SteamCounter'),
+            onTap: () {
+              // Go to Root
+              context.go('/bloc');
+              Navigator.pop(context);
             },
           ),
         ],

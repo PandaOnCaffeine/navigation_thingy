@@ -1,34 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:navigation_thingy/Blocs/BlocCounter/Blocs/bloc_counter_bloc.dart';
-import 'package:navigation_thingy/Blocs/BlocCounter/Events/bloc_counter_event.dart';
-import 'package:navigation_thingy/Blocs/BlocCounter/States/bloc_counter_state.dart';
 
-class BlocCounterView extends StatelessWidget {
-  /// {@macro counter_page}
-  const BlocCounterView({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => BlocCounterBloc(),
-      child: const BlocCounterScreen(),
-    );
-  }
-}
+// BlocCounter Things
+import '/BlocCounter/bloc_counter_bloc.dart';
+import '/BlocCounter/bloc_counter_event.dart';
+import '/BlocCounter/bloc_counter_state.dart';
 
 class BlocCounterScreen extends StatelessWidget {
   const BlocCounterScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final counterBloc = context.read<BlocCounterBloc>();
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Bloc Counter'),
-      ),
       body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text(
               'You have pushed the button this many times:',
@@ -38,7 +24,7 @@ class BlocCounterScreen extends StatelessWidget {
                 if (state.currentValue % 3 == 0) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
-                      backgroundColor: Colors.purple,
+                      duration: const Duration(seconds: 1),
                       content: Text('Three!!!  ${state.currentValue}'),
                     ),
                   );
@@ -55,14 +41,20 @@ class BlocCounterScreen extends StatelessWidget {
               children: [
                 FloatingActionButton(
                   onPressed: () {
-                    counterBloc.add(CounterIncrementEvent());
+                    context
+                        .read<BlocCounterBloc>()
+                        .add(CounterIncrementEvent());
                   },
+                  heroTag: 'incrementBtn',
                   child: const Icon(Icons.add),
                 ),
                 FloatingActionButton(
                   onPressed: () {
-                    counterBloc.add(CounterDecrementEvent());
+                    context
+                        .read<BlocCounterBloc>()
+                        .add(CounterDecrementEvent());
                   },
+                  heroTag: 'decrementBtn',
                   child: const Icon(Icons.remove),
                 ),
               ],
